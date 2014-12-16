@@ -8,32 +8,27 @@ import java.util.Stack;
 public class LongestValidParentheses {
     public static int longestValidParentheses(String s) {
         if (s == null || s.length() < 2) {return 0;}
-        Stack<Character> stack = new Stack<Character>();
+        Stack<Integer> stack = new Stack<Integer>();
+        int[] count = new int[s.length() + 1];
+        count[0] = 0;
         int max = 0;
-        boolean connected = false;
-        int current = 0;
         for (int i = 0; i < s.length(); i ++) {
             char ch = s.charAt(i);
-            if (stack.isEmpty())  {
-                stack.push(ch);
-            }else {
-                char top = stack.pop();
-                if (top == '(' && ch == ')') {
-                    if (connected) {
-                        current += 2;
-                        connected = true;
+            if (ch == '(') {
+                stack.push(i);
+            }
+            else {
+                if (!stack.isEmpty()) {
+                    int top = stack.pop();
+                    int tmp = i - top + 1;
+                    if (top>0) {
+                        tmp += count[top - 1];
                     }
-                    else {
-                        connected = false;
-                        current = 2;
-                    }
-                    max = Math.max(max, current);
+                    count[i] = tmp;
+                    max = Math.max(max, tmp);
                 }
                 else {
-                    stack.push(top);
-                    stack.push(ch);
-                    current = 0;
-                    connected = false;
+                    count[i] = 0;
                 }
             }
         }
