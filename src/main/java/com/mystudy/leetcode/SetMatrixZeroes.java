@@ -15,13 +15,13 @@ public class SetMatrixZeroes {
         for (int i = 0; i < row; i ++) {
             if (matrix[i][0] == 0) {
                 rowHasZeros = true;
-                break;;
+                break;
             }
         }
         for (int j = 0; j < col; j ++) {
             if (matrix[0][j] == 0) {
                 colHasZeros = true;
-                break;;
+                break;
             }
         }
         for (int i=0; i < row; i ++) {
