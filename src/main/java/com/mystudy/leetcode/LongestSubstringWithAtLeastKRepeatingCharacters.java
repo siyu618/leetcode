@@ -20,23 +20,23 @@ public class LongestSubstringWithAtLeastKRepeatingCharacters {
             cnt ++;
         }
     }
-    public int longestSubstring(String s, int k) {
-        if (null == s || s.length() == 0 || k == 0) {
-            return 0;
-        }
-        if (k == 1) {
-            return s.length();
-        }
-        int numNodes = 26;
-        Node[] arr = new Node[numNodes];
-        for (int i = 0; i < numNodes; i ++) {
-            arr[i] = new Node(i);
-        }
-        for (int i = 0; i < s.length(); i ++) {
-            int index = s.charAt(i) - 'a';
-            arr[index].update(i);
-        }
-
-
-    }
+//    public int longestSubstring(String s, int k) {
+//        if (null == s || s.length() == 0 || k == 0) {
+//            return 0;
+//        }
+//        if (k == 1) {
+//            return s.length();
+//        }
+//        int numNodes = 26;
+//        Node[] arr = new Node[numNodes];
+//        for (int i = 0; i < numNodes; i ++) {
+//            arr[i] = new Node(i);
+//        }
+//        for (int i = 0; i < s.length(); i ++) {
+//            int index = s.charAt(i) - 'a';
+//            arr[index].update(i);
+//        }
+//
+//
+//    }
 }
