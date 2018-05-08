@@ -14,16 +14,39 @@ public class MergeKSortedLists {
             next = null;
         }
     }
+
+    public static ListNode mergeKLists3(ListNode[] lists) {
+        PriorityQueue<ListNode> queue = new PriorityQueue<>(lists.length, (o1, o2) -> o1.val - o2.val);
+        for (ListNode list : lists) {
+            if (null != list) {
+                queue.add(list);
+            }
+        }
+        ListNode head = null;
+        ListNode cur = null;
+        while (!queue.isEmpty()) {
+            ListNode tmp = queue.poll();
+            if (head == null) {
+                head = tmp;
+                cur = head;
+            }
+            else {
+                cur.next = tmp;
+                cur = tmp;
+            }
+            if (tmp.next != null) {
+                queue.add(tmp.next);
+            }
+        }
+        return head;
+    }
+
+
     public static ListNode mergeKLists2(List<ListNode> lists) {
         if (lists == null || lists.size() == 0) {
             return null;
         }
-        PriorityQueue<ListNode> queue = new PriorityQueue<ListNode>(lists.size(), new Comparator<ListNode>() {
-            @Override
-            public int compare(ListNode o1, ListNode o2) {
-                return o1.val - o2.val;
-            }
-        });
+        PriorityQueue<ListNode> queue = new PriorityQueue<ListNode>(lists.size(), (o1, o2) -> o1.val - o2.val);
         for (ListNode node : lists) {
             if (node!=null) {
                 queue.add(node);
@@ -127,7 +150,10 @@ public class MergeKSortedLists {
         }
         System.out.println();
 
-        merged = mergeKLists2(lists);
+        ListNode[] listArray = new ListNode[lists.size()];
+        lists.toArray(listArray);
+
+        merged = mergeKLists3(listArray);
         tmp = merged;
         while (tmp != null) {
             System.out.print(tmp.val + " ");
