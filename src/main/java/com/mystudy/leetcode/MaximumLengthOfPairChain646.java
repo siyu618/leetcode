@@ -1,3 +1,5 @@
+package com.mystudy.leetcode;
+
 import java.util.Arrays;
 
 /**
